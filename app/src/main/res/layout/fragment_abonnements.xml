@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.fragments.fragment_abonnements">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+
+    <LinearLayout
+        android:id="@+id/lnr2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/spinnerType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"/>
+        <Spinner
+            android:id="@+id/spinnerVille"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"/>
+        <Spinner
+            android:id="@+id/spinnerLigne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"/>
+        <Spinner
+            android:id="@+id/spinnerDepart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"/>
+        <Spinner
+            android:id="@+id/spinnerDestination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"/>
+        <Spinner
+            android:id="@+id/spinnerDuree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"/>
+  <!--      <EditText
+            android:id="@+id/DateDebut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:clickable="true"
+           android:focusable="false"
+            android:textColor="@color/black"
+            android:hint="date_debut"/>
+-->
+     <!--   <EditText
+            android:id="@+id/DateFin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:clickable="true"
+            android:focusable="false"
+            android:textColor="@color/black"
+            android:hint="date_fin"/>
+
+-->
+
+
+
+        <!--        android:text="Doe"-->
+        <!--        android:text="John"-->
+        <!--        android:text="john.doe@esprit.tn"-->
+        <!--        android:text="password"-->
+        <!--        android:text="99112233"-->
+
+        <Button
+            android:id="@+id/btn_Abonner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/black"
+            android:text="S'abonner"
+
+            android:textColor="@color/white" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Prix :" />
+
+    </LinearLayout>
+</FrameLayout>
