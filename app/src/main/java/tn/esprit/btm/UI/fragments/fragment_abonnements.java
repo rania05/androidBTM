@@ -49,6 +49,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import Entity.Transport;
 import tn.esprit.btm.R;
 import tn.esprit.btm.UI.Helpers.SessionManager;
 import tn.esprit.btm.UI.activies.Log_activity;
@@ -60,13 +61,13 @@ import static android.R.layout.simple_spinner_item;
 
 public class fragment_abonnements extends Fragment  {
     String[] typeTransport= {"bus","train","metro"};
-    String[] ville= {"tunis","ariana"};
+  //  String[] ville= {"tunis","ariana"};
     String[] LigneTransport= {"as","cd","bb"};
     String[] Depart= {"d1","d2","d3"};
     String[] Destination= {"dd1","dd2","dd3"};
     String[] Duree= {"1 mois","3mois","6mois","12 mois"};
     SessionManager session;
-   // public ArrayList ville = new ArrayList();
+public ArrayList<String> ville = new ArrayList<String>(); //kahaw normalement
    // public ArrayList LigneTransport = new ArrayList();
    // public ArrayList Depart = new ArrayList();
    // public ArrayList Destination = new ArrayList();
@@ -280,29 +281,30 @@ Abonner.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onResponse(JSONArray response) {
 
-
                 try {
+                    JSONArray jsonArray = response.getJSONArray(Integer.parseInt("data"));
+                    System.out.println(jsonArray);
+                    Transport categorie = new Transport();
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject employee = jsonArray.getJSONObject(i);
 
-                    for (int i = 0; i < response.length(); i++) {
 
-                        JSONObject villeobject = response.getJSONObject(i);
 
-                    String   villeSp=villeobject.getString("ville");
-                        System.out.println("fct2 "+villeSp);
-                    //    ville.add(villeSp);
+                 categorie.setLigne(employee.getString("ville"));
 
+                        ville.add(categorie.getLigne());
 
                     }
 
+
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    System.out.println("error catch");
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("error response");
+                error.printStackTrace();
             }
         });
         requestQueue.add(stringRequest);
@@ -313,40 +315,38 @@ Abonner.setOnClickListener( new View.OnClickListener() {
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         System.out.println("ena hne ");
-        JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET,AppConfig.URL_LIGNE, null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET,AppConfig.URL_HOURS, null, new Response.Listener<JSONArray>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONArray response) {
                 System.out.println("step 1");
                 try {
-                    System.out.println("step 2");
-                    System.out.println("step 3");
-
-                    for (int i = 0; i < response.length(); i++) {
-
-                        JSONObject villeobject = response.getJSONObject(i);
-
-                        String villeSp=villeobject.getString("ligne");
-                        System.out.println("fct2 "+villeSp);
-                      //  LigneTransport.add(villeSp);
+                    JSONArray jsonArray = response.getJSONArray(Integer.parseInt("data"));
+                    System.out.println(jsonArray);
+                    Transport categorie = new Transport();
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject employee = jsonArray.getJSONObject(i);
 
 
-                        System.out.println("ajoutit f ligne ");
+
+                        categorie.setLigne(employee.getString("ville"));
+
+                        ville.add(categorie.getLigne());
+
                     }
 
-                    System.out.println("step 4");
+
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    System.out.println("error catch");
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("error response");
+                error.printStackTrace();
             }
         });
-        requestQueue.add(stringRequest);
+        requestQueue.add(stringRequest); //aya nighty
     }
     public void loadSpinnerDataDepartDest() {
 

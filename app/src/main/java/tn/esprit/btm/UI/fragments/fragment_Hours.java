@@ -1,5 +1,6 @@
 package tn.esprit.btm.UI.fragments;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,9 +37,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Entity.Transport;
-import Entity.TransportCallBack;
+
 import adapter.TransportAdapter;
 import tn.esprit.btm.R;
+import tn.esprit.btm.UI.activies.AddTickets;
 import tn.esprit.btm.UI.app.AppConfig;
 
 import static android.R.layout.simple_spinner_item;
@@ -48,6 +51,7 @@ public class fragment_Hours extends Fragment  {
 
 
     private RecyclerView recyclerView;
+
 
     //final Calendar cldr = Calendar.getInstance();
 
@@ -67,7 +71,7 @@ public class fragment_Hours extends Fragment  {
         Button MetroButton = rootView.findViewById(R.id.btn_MetroH);
         Spinner spinnerVille = rootView.findViewById(R.id.spinnerVille);
 
-     //   searchView=rootView.findViewById(R.id.search);
+        //   searchView=rootView.findViewById(R.id.search);
         recyclerView = rootView.findViewById(R.id.recycler_list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(true);
@@ -77,12 +81,10 @@ public class fragment_Hours extends Fragment  {
         mAdapter = new TransportAdapter(transportArrayList);
 
         recyclerView.setAdapter(mAdapter);
-       // loadSpinnerData();
+        // loadSpinnerData();
         ArrayAdapter<String> spinnerAdapterVille = new ArrayAdapter<String>(getActivity(), simple_spinner_item, countryName);
         spinnerAdapterVille.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerVille.setAdapter(spinnerAdapterVille);
-
-
 
         BusButton.setOnClickListener(v -> {
 
@@ -91,26 +93,28 @@ public class fragment_Hours extends Fragment  {
 
 
 
-          if (mAdapter.getItemCount() != 0) {
-              transportArrayList.clear();
+            if (mAdapter.getItemCount() != 0) {
+                transportArrayList.clear();
 
 
-              fillDataBus();
-              mAdapter.notifyDataSetChanged();
+                fillDataBus();
+
+                mAdapter.notifyDataSetChanged();
             } else {
-            fillDataBus();
-mAdapter.notifyDataSetChanged();
-        }
-                });
+                fillDataBus();
+
+                mAdapter.notifyDataSetChanged();
+            }
+        });
         TrainButton.setOnClickListener(v -> {
 
-                   if (mAdapter.getItemCount() != 0) {
-                       transportArrayList.clear();
-                      fillDataTrain();
+                    if (mAdapter.getItemCount() != 0) {
+                        transportArrayList.clear();
+                        fillDataTrain();
                         mAdapter.notifyDataSetChanged();
 
                     } else {
-                       fillDataTrain();
+                        fillDataTrain();
                         mAdapter.notifyDataSetChanged();
 
                     }
@@ -121,11 +125,11 @@ mAdapter.notifyDataSetChanged();
 
             if (mAdapter.getItemCount() != 0) {
                 transportArrayList.clear();
-             fillDataMetro();
+                fillDataMetro();
                 mAdapter.notifyDataSetChanged();
 
             } else {
-             fillDataMetro();
+                fillDataMetro();
                 mAdapter.notifyDataSetChanged();
             }
 
@@ -140,7 +144,6 @@ mAdapter.notifyDataSetChanged();
             @Override
             public boolean onQueryTextChange(String newText) {
                 mAdapter.toString().equalsIgnoreCase(newText);
-
                 return false;
             }
         });*/
@@ -157,10 +160,7 @@ mAdapter.notifyDataSetChanged();
     /************* fonctions *****************************/
 
 
-
-
-
-
+    //
 
 
     public void fillDataBus() {
@@ -176,9 +176,10 @@ mAdapter.notifyDataSetChanged();
                         JSONObject employee = jsonArray.getJSONObject(i);
 
 
-                        categorie.setRegion(employee.getString("ligne"));
-                         categorie.setLigne(employee.getString("ville"));
-                        categorie.setType(employee.getString("nom"));
+                        categorie.setRegion(employee.getString("ville"));
+                        categorie.setLigne(employee.getString("ligne"));
+                        categorie.setType(employee.getString("type"));
+                        categorie.setDepart(employee.getString("nom"));
                         categorie.setHeure(employee.getString("heure"));
                         categorie.setNumero(employee.getInt("numero"));
                         transportArrayList.add(categorie);
@@ -200,39 +201,41 @@ mAdapter.notifyDataSetChanged();
 
     }
 
- public void fillDataTrain() {
-     RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-     JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, AppConfig.URL_TRAIN, null, new Response.Listener<JSONObject>() {
-         @Override
-         public void onResponse(JSONObject response) {
-             try {
-                 JSONArray jsonArray = response.getJSONArray("data");
-                 System.out.println(jsonArray);
-                 Transport categorie = new Transport();
-                 for (int i = 0; i < jsonArray.length(); i++) {
-                     JSONObject employee = jsonArray.getJSONObject(i);
+    public void fillDataTrain() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, AppConfig.URL_TRAIN, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("data");
+                    System.out.println(jsonArray);
+                    Transport categorie = new Transport();
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject employee = jsonArray.getJSONObject(i);
 
-                     String l = employee.getString("ligne");
-                     categorie.setRegion(employee.getString("ligne"));
-                     // categorie.setLigne(employee.getString("ligne"));
-                     System.out.println(l);
 
-                     transportArrayList.add(categorie);
+                        categorie.setRegion(employee.getString("ville"));
+                        categorie.setLigne(employee.getString("ligne"));
+                        categorie.setType(employee.getString("type"));
+                        categorie.setDepart(employee.getString("nom"));
+                        categorie.setHeure(employee.getString("heure"));
+                        categorie.setNumero(employee.getInt("numero"));
+                        transportArrayList.add(categorie);
 
-                 }
-                 mAdapter.notifyDataSetChanged();
+                    }
+                    mAdapter.notifyDataSetChanged();
 
-             } catch (JSONException e) {
-                 e.printStackTrace();
-             }
-         }
-     }, new Response.ErrorListener() {
-         @Override
-         public void onErrorResponse(VolleyError error) {
-             error.printStackTrace();
-         }
-     });
-     requestQueue.add(request);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        requestQueue.add(request);
 
 
     }
@@ -249,11 +252,13 @@ mAdapter.notifyDataSetChanged();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject employee = jsonArray.getJSONObject(i);
 
-                        String l = employee.getString("ligne");
-                        categorie.setRegion(employee.getString("ligne"));
-                        // categorie.setLigne(employee.getString("ligne"));
-                        System.out.println(l);
 
+                        categorie.setRegion(employee.getString("ville"));
+                        categorie.setLigne(employee.getString("ligne"));
+                        categorie.setType(employee.getString("type"));
+                        categorie.setDepart(employee.getString("nom"));
+                        categorie.setHeure(employee.getString("heure"));
+                        categorie.setNumero(employee.getInt("numero"));
                         transportArrayList.add(categorie);
 
                     }
@@ -289,9 +294,9 @@ mAdapter.notifyDataSetChanged();
 
                         JSONObject villeobject = response.getJSONObject(i);
 
-                       String villeSp=villeobject.getString("ville");
+                        String villeSp=villeobject.getString("ville");
                         System.out.println("fct2 "+villeSp);
-                      countryName.add(villeSp);
+                        countryName.add(villeSp);
 
 
                         System.out.println("ajoutit f country ");
@@ -315,5 +320,4 @@ mAdapter.notifyDataSetChanged();
 
 
 }
-
 

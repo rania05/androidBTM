@@ -1,9 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.activies.AddTickets">
+    <LinearLayout
+        android:id="@+id/lnr1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:inputType="text"
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/moyenTransportTicket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:enabled="false"
+            android:inputType="text"
+            android:hint="moyenTransport"/>
+
+        <EditText
+            android:id="@+id/gouverneratTicket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:layout_margin="20dp"
+            android:hint="gouvernerat"/>
+
+        <EditText
+            android:id="@+id/ligneTicket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+
+            android:inputType="textEmailAddress"
+            android:hint="ligne"/>
+
+        <EditText
+            android:id="@+id/stationDepartTicket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:enabled="false"
+            android:inputType="phone"
+            android:hint="stationDepart"/>
+        <EditText
+            android:id="@+id/stationArriveTicket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:inputType="phone"
+            android:hint="stationArrive"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_acheterTicket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lnr1"
+        android:layout_margin="20dp"
+        android:background="@color/black"
+        android:text="achteter"
+        android:textColor="@color/white" />
+
+
+</RelativeLayout>

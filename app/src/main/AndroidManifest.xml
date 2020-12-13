@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,7 +18,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BTM">
-        <activity android:name=".UI.fragments.mapFragment"
+        <activity android:name=".UI.activies.AddTickets"></activity>
+        <activity
+            android:name=".UI.fragments.mapFragment"
             tools:ignore="Instantiatable" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -30,8 +32,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
+            android:value="AIzaSyCH-odWuzqxvAPFCB0pQ3T-z0GmWkHczOg" />
 
         <activity android:name=".UI.activies.MainActivity" />
         <activity android:name=".UI.activies.Log_activity">

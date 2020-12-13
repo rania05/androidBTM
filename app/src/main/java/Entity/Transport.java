@@ -13,6 +13,7 @@ public class Transport implements Serializable {
     private String type;
     private String region;
     private String ligne;
+    private String depart;
 private int numero;
     private String heure;
 
@@ -21,13 +22,14 @@ private int numero;
 public  Transport (){
 
 
-}    public Transport( String type, String region, String ligne, int numero, String heure) {
+}    public Transport( String type, String region, String ligne, int numero, String heure,String depart) {
 
         this.type = type;
         this.region = region;
         this.ligne = ligne;
         this.numero = numero;
         this.heure = heure;
+        this.depart = depart;
     }
 
     public Transport(String id, String type, String region, String ligne, int numero, String heure) {
@@ -37,6 +39,14 @@ public  Transport (){
         this.ligne = ligne;
         this.numero = numero;
         this.heure = heure;
+    }
+
+    public String getDepart() {
+        return depart;
+    }
+
+    public void setDepart(String depart) {
+        this.depart = depart;
     }
 
     public int getNumero() {
