@@ -40,6 +40,7 @@ import Entity.Transport;
 
 import adapter.TransportAdapter;
 import tn.esprit.btm.R;
+import tn.esprit.btm.UI.activies.AddAbonnement;
 import tn.esprit.btm.UI.activies.AddTickets;
 import tn.esprit.btm.UI.app.AppConfig;
 
@@ -121,10 +122,12 @@ public class fragment_Hours extends Fragment  {
                 }
 
         );
+
+
         MetroButton.setOnClickListener(v -> {
 
-            if (mAdapter.getItemCount() != 0) {
-                transportArrayList.clear();
+if (mAdapter.getItemCount() != 0) {
+               transportArrayList.clear();
                 fillDataMetro();
                 mAdapter.notifyDataSetChanged();
 
@@ -134,19 +137,11 @@ public class fragment_Hours extends Fragment  {
             }
 
             mAdapter.notifyDataSetChanged();
+
+
+
         });
-       /* searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-               mAdapter.toString().equalsIgnoreCase(query);
-                return false;
-            }
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                mAdapter.toString().equalsIgnoreCase(newText);
-                return false;
-            }
-        });*/
+
 
 
 

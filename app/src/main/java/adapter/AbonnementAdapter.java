@@ -11,77 +11,71 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import Entity.Abonnement;
 import Entity.Transport;
 import tn.esprit.btm.R;
 import tn.esprit.btm.UI.activies.AddTickets;
 
 public class AbonnementAdapter extends RecyclerView.Adapter<AbonnementAdapter.MyViewHolder> {
 
-    private List<Transport> transportsList;
-    private Transport transport;
+    private List<Abonnement> abonnementsList;
+    private Abonnement abonnement;
 
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
-        public TextView htv, stv, vtv, ltv, ntv;
-        public ImageView navigationBtn;
+        public TextView htv, stv, vtv, ltv, ntv,atv,ptv,dtv;
+
 
         public MyViewHolder(View view) {
             super(view);
-            htv = view.findViewById(R.id.TransportHeure);
-            stv = view.findViewById(R.id.TransportStation);
-            vtv = view.findViewById(R.id.TransportVille);
-            ltv = view.findViewById(R.id.TransportLigne_tv);
-            ntv = view.findViewById(R.id.TransportNumero);
-            navigationBtn = view.findViewById(R.id.btnAddTicket);
+            htv = view.findViewById(R.id.AbonnementDateDebut);
+            stv = view.findViewById(R.id.AbonnementStationDepart);
+            atv = view.findViewById(R.id.AbonnementStationArrive);
+            vtv = view.findViewById(R.id.AbonnementVille);
+            ltv = view.findViewById(R.id.AbonnementLigne_tv);
+            ntv = view.findViewById(R.id.AbonnementNumero);
+            ptv = view.findViewById(R.id.AbonnementPrix);
+            dtv = view.findViewById(R.id.AbonnementDuree);
+
         }
 
 
     }
 
 
-    public AbonnementAdapter(List<Transport> transportsList) {
-        this.transportsList = transportsList;
+    public AbonnementAdapter(List<Abonnement>abonnementsList) {
+        this.abonnementsList = abonnementsList;
 
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.transport_list_item, parent, false);
+                .inflate(R.layout.abonnement_list_item, parent, false);
 
         return new MyViewHolder(itemView);
     }
     //stacktrace = logcat = terminal eli fih el errors = console = logcat
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        transport = transportsList.get(position);
-        holder.htv.setText(transport.getHeure());
-        holder.ltv.setText(transport.getLigne()); //get ligne s7i7a ? mawjouda ?
-        holder.ntv.setText(String.valueOf(transport.getNumero()));
-        holder.vtv.setText(transport.getRegion());
-        holder.stv.setText(transport.getDepart());
-        holder.navigationBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               //Toast.makeText(v.getContext(), transport.getLigne(), Toast.LENGTH_SHORT).show();
+        abonnement = abonnementsList.get(position);
+        holder.htv.setText(abonnement.getDateDebut());
+        holder.ltv.setText(abonnement.getLigne());
+        holder.ntv.setText(String.valueOf(abonnement.getId()));
+        holder.vtv.setText(abonnement.getVille());
+        holder.stv.setText(abonnement.getDepart());
+        holder.ptv.setText(String.valueOf(abonnement.getPrix()));
+        holder.dtv.setText(abonnement.getDuree());
+        holder.atv.setText(abonnement.getDestination());
 
-                Intent intent = new Intent(v.getContext(), AddTickets.class);
-                intent.putExtra("moyen",transportsList.get(position).getType());
-                intent.putExtra("ligne",transportsList.get(position).getLigne());
-                intent.putExtra("gouv",transportsList.get(position).getRegion());
-                intent.putExtra("depart",transportsList.get(position).getDepart());
-                v.getContext().startActivity(intent);
-                //es2el
-            }
-        });
     }
 
 
 
     @Override
     public int getItemCount() {
-        return transportsList.size();
+        return abonnementsList.size();
     }
 
 }

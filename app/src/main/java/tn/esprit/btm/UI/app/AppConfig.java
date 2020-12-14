@@ -15,6 +15,9 @@ public class AppConfig {
   public  static String URL_TICKET_metro = "http://"+ IP_ADDRESS +":3000/api/tickets/m/u/" ;
   public  static String URL_TICKET_bus = "http://"+ IP_ADDRESS +":3000/api/tickets/b/u/" ;
 
+  public  static String URL_ABN_train = "http://"+ IP_ADDRESS +":3000/api/abonnements/t/" ;
+  public  static String URL_ABN_metro = "http://"+ IP_ADDRESS +":3000/api/abonnements/m/" ;
+  public  static String URL_ABN_bus = "http://"+ IP_ADDRESS +":3000/api/abonnements/b/" ;
   public  static String URL_LIGNE = "http://"+ IP_ADDRESS +":3000/api/moyenTransport/";
     public  static String URL_BUS= "http://"+ IP_ADDRESS +":3000/api/moyenTransport/t/bus";
     public  static String URL_TRAIN = "http://"+ IP_ADDRESS +":3000/api/moyenTransport/t/train";

@@ -59,7 +59,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.MyViewHold
     public void onBindViewHolder(MyViewHolder holder, int position) {
         ticket = ticketList.get(position);
         holder.htv.setText(ticket.getDate());
-        holder.ltv.setText(ticket.getLigne()); //get ligne s7i7a ? mawjouda ?
+        holder.ltv.setText(ticket.getLigne());
         holder.ntv.setText(String.valueOf(ticket.getId()));
         holder.vtv.setText(ticket.getGouv());
         holder.stv.setText(ticket.getStationDepart());

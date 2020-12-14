@@ -8,8 +8,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -32,10 +34,13 @@ import tn.esprit.btm.R;
 import tn.esprit.btm.UI.Helpers.SessionManager;
 import tn.esprit.btm.UI.app.AppConfig;
 
+import static android.R.layout.simple_spinner_item;
+
 public class AddTickets extends AppCompatActivity {
 
     private EditText txtMoyen, txtGouv, txtLigne ,txtDepart, txtArrive;
-
+    Spinner spinnerDestination;
+    String[] Destination= {"zahra","jbal jloud","rades","sidi rezig","centre ville"};
     SessionManager session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +50,11 @@ public class AddTickets extends AppCompatActivity {
         txtGouv = findViewById(R.id.gouverneratTicket);
         txtLigne = findViewById(R.id.ligneTicket);
         txtDepart = findViewById(R.id.stationDepartTicket);
-        txtArrive = findViewById(R.id.stationArriveTicket);
+        spinnerDestination= (Spinner) findViewById(R.id.stationArriveTicket);
+        ArrayAdapter<String> spinnerAdapterDestination = new ArrayAdapter<String> (this, simple_spinner_item,Destination);
+        spinnerAdapterDestination.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDestination.setAdapter(spinnerAdapterDestination);
+        spinnerDestination.setSelection(0);
         Button btn_achat = findViewById(R.id.btn_acheterTicket);
         String ligne ="ligne";
         String moyen ="moyen";
@@ -80,7 +89,7 @@ public class AddTickets extends AppCompatActivity {
                 jsonBody.put("ligne","Sud");
                // jsonBody.put("ligne", txtLigne.getText().toString());
                 jsonBody.put("stationDepart", txtDepart.getText().toString());
-                jsonBody.put("stationArrive", txtArrive.getText().toString());
+                jsonBody.put("stationArrive",spinnerDestination.getSelectedItem().toString());
 
                 jsonBody.put("gouv", txtGouv.getText().toString());
                 jsonBody.put("iduser", session.getUserByToken());

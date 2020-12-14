@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="6dp"
+    android:layout_marginBottom="4dp"
+    android:padding="4dp">
+    <LinearLayout
+        android:gravity="center"
+        android:id="@+id/contentBus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:weightSum="8">
+
+            <TextView
+                android:id="@+id/AbonnementDateDebut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:layout_margin="2dp"
+                android:textColor="@color/black"
+                android:textSize="9dp"/>
+            <TextView
+                android:id="@+id/AbonnementStationDepart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:layout_margin="2dp"
+                android:textColor="@color/black"
+                android:textSize="9dp"/>
+            <TextView
+                android:id="@+id/AbonnementStationArrive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:layout_margin="2dp"
+                android:textColor="@color/black"
+                android:textSize="9dp"/>
+            <TextView
+                android:id="@+id/AbonnementVille"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:layout_margin="2dp"
+                android:textColor="@color/black"
+                android:textSize="9dp"/>
+            <TextView
+                android:id="@+id/AbonnementNumero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:layout_margin="2dp"
+                android:textColor="@color/black"
+                android:textSize="9dp"/>
+
+
+            <TextView
+                android:id="@+id/AbonnementPrix"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:layout_margin="2dp"
+                android:textColor="@color/black"
+                android:textSize="9dp"/>
+
+            <TextView
+                android:id="@+id/AbonnementDuree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:layout_margin="2dp"
+                android:textColor="@color/black"
+                android:textSize="9dp"/>
+
+            <TextView
+                android:id="@+id/AbonnementLigne_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:layout_margin="2dp"
+                android:textColor="@color/black"
+                android:textSize="9dp"/>
+
+
+
+        </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Abonnement  implements Serializable {
     private String id;
-     Date dateDebut;
+     String dateDebut;
     String image;
     String idUser;
     String moyenTransport;
@@ -14,12 +14,12 @@ public class Abonnement  implements Serializable {
     String depart;
     String destination;
     String duree;
-    float prix;
+    Double prix;
 
     public Abonnement() {
     }
 
-    public Abonnement(String id, Date dateDebut, String image, String idUser, String moyenTransport, String ville, String ligne, String depart, String destination, String duree, float prix) {
+    public Abonnement(String id, String dateDebut, String image, String idUser, String moyenTransport, String ville, String ligne, String depart, String destination, String duree, Double prix) {
         this.id = id;
         this.dateDebut = dateDebut;
         this.image = image;
@@ -41,11 +41,11 @@ public class Abonnement  implements Serializable {
         this.id = id;
     }
 
-    public Date getDateDebut() {
+    public String getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Date dateDebut) {
+    public void setDateDebut(String dateDebut) {
         this.dateDebut = dateDebut;
     }
 
@@ -113,11 +113,11 @@ public class Abonnement  implements Serializable {
         this.duree = duree;
     }
 
-    public float getPrix() {
+    public Double getPrix() {
         return prix;
     }
 
-    public void setPrix(float prix) {
+    public void setPrix(Double prix) {
         this.prix = prix;
     }
 }

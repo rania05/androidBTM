@@ -41,12 +41,7 @@ import tn.esprit.btm.UI.app.AppConfig;
 public class fragment_Tickets extends Fragment {
 
     SessionManager session;
-    TextView date;
-    TextView ligne;
-    TextView moyenTransport;
-    TextView stationDepart;
-    Button stationArrive;
-    String prix ;
+
 
     private RecyclerView recyclerView;
     ArrayList<Ticket> ticketArrayList = new ArrayList<>();

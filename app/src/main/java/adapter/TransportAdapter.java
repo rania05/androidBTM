@@ -69,7 +69,8 @@ public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.MyVi
 
                 Intent intent = new Intent(v.getContext(), AddTickets.class);
                 intent.putExtra("moyen",transportsList.get(position).getType());
-                intent.putExtra("ligne",transportsList.get(position).getLigne());
+                intent.putExtra("ligne","bonlieu sud");
+               // intent.putExtra("ligne",transportsList.get(position).getLigne());
                 intent.putExtra("gouv",transportsList.get(position).getRegion());
                 intent.putExtra("depart",transportsList.get(position).getDepart());
                 v.getContext().startActivity(intent);

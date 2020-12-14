@@ -49,13 +49,12 @@
             android:enabled="false"
             android:inputType="phone"
             android:hint="stationDepart"/>
-        <EditText
+        <Spinner
             android:id="@+id/stationArriveTicket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:inputType="phone"
-            android:hint="stationArrive"/>
+            android:layout_margin="20dp"/>
+
 
     </LinearLayout>
 
