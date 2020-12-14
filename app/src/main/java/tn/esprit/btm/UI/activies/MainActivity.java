@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     public void openFragHome(View view) {
         showFragment(new mapFragment());
     }
+
+
+
     public void openFragHours(View view) {
         showFragment(new fragment_Hours());
     }
