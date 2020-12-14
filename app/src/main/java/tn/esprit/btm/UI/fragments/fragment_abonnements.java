@@ -34,6 +34,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -60,15 +61,17 @@ import static android.R.layout.simple_spinner_item;
 
 
 public class fragment_abonnements extends Fragment  {
+
     String[] typeTransport= {"bus","train","metro"};
-  //  String[] ville= {"tunis","ariana"};
+    String[] villeSp = {"ben arous ","tunis","ariana"};
     String[] LigneTransport= {"as","cd","bb"};
     String[] Depart= {"d1","d2","d3"};
     String[] Destination= {"dd1","dd2","dd3"};
     String[] Duree= {"1 mois","3mois","6mois","12 mois"};
     SessionManager session;
-public ArrayList<String> ville = new ArrayList<String>(); //kahaw normalement
-   // public ArrayList LigneTransport = new ArrayList();
+    public ArrayList<String> ville = new ArrayList<String>(); //this can't be an array list 5atrou ye5edh simple array
+
+    // public ArrayList LigneTransport = new ArrayList();
    // public ArrayList Depart = new ArrayList();
    // public ArrayList Destination = new ArrayList();
     Spinner spinnerType,spinnerLigne,spinnerVille,spinnerDepart,spinnerDestination,spinnerDuree;
@@ -98,9 +101,14 @@ Button Abonner;
         spinnerDuree= (Spinner) rootView.findViewById(R.id.spinnerDuree);
         int selectedVilleSpinner;
         Abonner=(Button)rootView.findViewById(R.id.btn_Abonner);
+
+        /*for (int c = 0; c < ville.size(); c++) {
+            villeSp[c] = ville.get(c);
+        }*/
+
         ArrayAdapter<String> spinnerAdapterType = new ArrayAdapter <String> (getActivity(), simple_spinner_item,typeTransport);
         ArrayAdapter<String> spinnerAdapterLigne = new ArrayAdapter<String> (getActivity(), simple_spinner_item,LigneTransport);
-        ArrayAdapter<String> spinnerAdapterVille = new ArrayAdapter<String>(getActivity(), simple_spinner_item,ville);
+        ArrayAdapter<String> spinnerAdapterVille = new ArrayAdapter<String>(getActivity(), simple_spinner_item,villeSp);
 
         ArrayAdapter<String> spinnerAdapterDepart = new ArrayAdapter<String> (getActivity(), simple_spinner_item,Depart);
         ArrayAdapter<String> spinnerAdapterDestination = new ArrayAdapter<String> (getActivity(), simple_spinner_item,Destination);
@@ -109,7 +117,7 @@ Button Abonner;
         session = new SessionManager(mContext);
 
 
-        loadSpinnerDataVille();
+        //loadSpinnerDataVille();
         loadSpinnerDataLigne();
         loadSpinnerDataDepartDest();
 
@@ -133,7 +141,7 @@ Button Abonner;
         spinnerAdapterDuree.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDuree.setAdapter(spinnerAdapterDuree);
 
-
+/*
         spinnerVille.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -146,16 +154,18 @@ Testt=spinnerVille.getSelectedItem().toString();
 
             }
         });
+*/
 
 
 
 
-spinnerVille.setSelection(0);/*
+
+spinnerVille.setSelection(0);
 spinnerType.setSelection(0);
 spinnerDuree.setSelection(0);
  spinnerDestination.setSelection(0);
         spinnerDepart.setSelection(0);
-        spinnerLigne.setSelection(0);*/
+        spinnerLigne.setSelection(0);
 
 
 
@@ -271,18 +281,18 @@ Abonner.setOnClickListener( new View.OnClickListener() {
 
         return rootView;
     }
-
+/*
     public void loadSpinnerDataVille( ) {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         System.out.println("ena hne ");
 
-        JsonArrayRequest stringRequest = new JsonArrayRequest(Request.Method.GET, AppConfig.URL_HOURS, null, new Response.Listener<JSONArray>() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, AppConfig.URL_HOURS,
+                null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONArray response) {
+            public void onResponse(JSONObject response) {
 
                 try {
-                    JSONArray jsonArray = response.getJSONArray(Integer.parseInt("data"));
+                    JSONArray jsonArray = response.getJSONArray("data");
                     System.out.println(jsonArray);
                     Transport categorie = new Transport();
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -293,6 +303,7 @@ Abonner.setOnClickListener( new View.OnClickListener() {
                  categorie.setLigne(employee.getString("ville"));
 
                         ville.add(categorie.getLigne());
+                        villeSp[i] = employee.getString("ville");
 
                     }
 
@@ -307,9 +318,9 @@ Abonner.setOnClickListener( new View.OnClickListener() {
                 error.printStackTrace();
             }
         });
-        requestQueue.add(stringRequest);
+        requestQueue.add(request);
     }
-
+*/
 
     public void loadSpinnerDataLigne() {
 
@@ -332,6 +343,7 @@ Abonner.setOnClickListener( new View.OnClickListener() {
                         categorie.setLigne(employee.getString("ville"));
 
                         ville.add(categorie.getLigne());
+                        villeSp[i] = employee.getString("ville");
 
                     }
 

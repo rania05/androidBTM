@@ -59,7 +59,7 @@ public class fragment_Hours extends Fragment  {
 
     private TransportAdapter mAdapter;
 
-
+//
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -165,7 +165,8 @@ public class fragment_Hours extends Fragment  {
 
     public void fillDataBus() {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, AppConfig.URL_BUS, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, AppConfig.URL_BUS,
+                null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {

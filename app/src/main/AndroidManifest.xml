@@ -33,6 +33,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCH-odWuzqxvAPFCB0pQ3T-z0GmWkHczOg" />
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
 
         <activity android:name=".UI.activies.MainActivity" />
         <activity android:name=".UI.activies.Log_activity">

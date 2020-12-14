@@ -3,6 +3,7 @@ package tn.esprit.btm.UI.activies;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.androidannotations.annotations.App;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,6 +35,7 @@ import tn.esprit.btm.UI.app.AppConfig;
 public class AddTickets extends AppCompatActivity {
 
     private EditText txtMoyen, txtGouv, txtLigne ,txtDepart, txtArrive;
+
     SessionManager session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,7 @@ public class AddTickets extends AppCompatActivity {
         String moyen ="moyen";
         String gouv ="gouv";
         String depart ="depart";
-
+        Context mContext = getApplicationContext();
         Bundle extras=getIntent().getExtras();
         if(extras !=null)
         {
@@ -72,6 +75,7 @@ public class AddTickets extends AppCompatActivity {
                 System.out.println("ena hne ");
                 JSONObject jsonBody = new JSONObject();
 
+                session = new SessionManager(mContext);
                 jsonBody.put("moyenTransport", txtMoyen.getText().toString());
                 jsonBody.put("ligne","Sud");
                // jsonBody.put("ligne", txtLigne.getText().toString());

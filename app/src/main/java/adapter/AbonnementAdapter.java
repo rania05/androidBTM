@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +15,7 @@ import Entity.Transport;
 import tn.esprit.btm.R;
 import tn.esprit.btm.UI.activies.AddTickets;
 
-public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.MyViewHolder> {
+public class AbonnementAdapter extends RecyclerView.Adapter<AbonnementAdapter.MyViewHolder> {
 
     private List<Transport> transportsList;
     private Transport transport;
@@ -41,7 +40,7 @@ public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.MyVi
     }
 
 
-    public TransportAdapter(List<Transport> transportsList) {
+    public AbonnementAdapter(List<Transport> transportsList) {
         this.transportsList = transportsList;
 
     }
